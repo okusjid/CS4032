@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile-container {
+    width: 1200px;
+    margin: auto; /* Center the profile container */
+    padding-bottom: 20px; /* Added padding for visual spacing */
+}
+
+.header-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: purple; /* Adjusted for the header-section */
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 250px;
+    height: 260px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+h2 {
+    margin: 0 0 10px 0;
+    font-size: 48px;
+    color: white; /* Ensuring text color is white for visibility */
+}
+
+p {
+    margin: 0;
+    font-size: 24px;
+    color: white; /* Ensuring text color is white for visibility */
+}
+
+.contact-info {
+    background-color: #f368f3;
+    padding: 20px;
+    color: white;
+    border-radius: 10px; /* Added for visual aesthetics */
+}
+
+.contact-info h3 {
+    margin-top: 0;
+    text-decoration: underline;
+    font-size: 25px;
+}
+
+.contact-item {
+    margin-top: 20px;
+    display: flex; /* Ensuring icons and text are aligned */
+    align-items: center; /* Aligning items vertically */
+}
+
+.contact-item img {
+    vertical-align: middle;
+    width: 25px; /* Adjusted width for consistency */
+    height: 25px; /* Adjusted height for consistency */
+    margin-right: 10px; /* Added spacing between icon and text */
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column; /* Changed to column for a vertical layout */
+    padding: 20px;
+    border: 2px solid #f368f3; /* Added border */
+}
+
+.main-section > section {
+    margin-left: 20px;
+}
+
+.main-section hr {
+    background-color: purple;
+    margin-top: 50px;
+    width: 100%;
+    height: 2px;
+}
+
+.main-section h3 {
+    color: purple; /* Ensuring header color matches the theme */
+}
+
+.main-section p {
+    font-size: 16px; /* Adjusted for readability */
+    color: black; /* Default text color for readability */
+}
+
+.footer-section {
+ 
+    background-color: purple; 
+    color: white; 
+    text-align: center;
+    line-height: 50px; 
+    bottom: 0;
+}

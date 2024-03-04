@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People per hour</title>
+
+    <!-- Include the Tailwind CSS stylesheet -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./src/input.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+<body>
+
+   <!-- Mobile Navigation Menu (Right Side) -->
+   <div id="mobileNavMenu" class="fixed top-0 right-0 h-full bg-slate-100 w-1/2 md:w-64 p-4 md:p-6 hidden"  style="z-index: 9999;">
+    <div class="flex flex-col h-full justify-between ">
+       
+
+        <!-- Navigation Links -->
+        <div class="space-y-4">
+            <a href="#" class="text-gray-600 hover:text-orange-500">How It Works</a><br>
+            <a href="#" class="text-gray-600 hover:text-orange-500">Login</a><br>
+            <a href="#" class="text-gray-600 hover:text-orange-500">Sign Up</a><br>
+            <a href="#" class="text-orange-500">Freelancer?</a>
+        </div>
+
+        <!-- Close Button -->
+        <button id="closeMobileNav" class="text-gray-600 hover:text-orange-500 self-end">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<!-- Navigation Bar (Desktop and Toggle Button) -->
+<nav class="bg-slate-100 p-4 md:p-6">
+    <div class="flex justify-between items-center">
+        <div class="flex-1">
+            <img src="./img/logo.png" class="ml-8 w-32 md:w-32" alt="Logo">
+        </div>
+        <div class="md:flex hidden space-x-4 md:space-x-8">
+            <!-- Search Dropdown -->
+            <div class="relative group cursor-pointer">
+                <img src="./img/icons8-search-50.png" alt="">
+                <div id="searchDropdown" class="absolute hidden mt-2 space-y-2 bg-white text-gray-600 group-hover:block"
+                    style="z-index: 9999;">
+                    <a href="#" class="block px-4 py-2">Option 1</a>
+                    <a href="#" class="block px-4 py-2">Option 2</a>
+                    <a href="#" class="block px-4 py-2">Option 3</a>
+                </div>
+            </div>
+            <div class="pt-3">
+                <a href="#" class="text-gray-600 hover:text-orange-500 mr-6">How It Works</a>
+                <a href="#" class="text-gray-600 hover:text-orange-500 mr-6">Login</a>
+                <a href="#" class="text-gray-600 hover:text-orange-500 mr-6">Sign Up</a>
+                <a href="#" class="text-orange-500 ">Freelancer?</a>
+            </div>
+        </div>
+        <div class="md:hidden flex items-center space-x-2">
+            <button id="openMobileNav" class="text-gray-600 hover:text-orange-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<script>
+    const openMobileNav = document.getElementById('openMobileNav');
+    const closeMobileNav = document.getElementById('closeMobileNav');
+    const mobileNavMenu = document.getElementById('mobileNavMenu');
+    const searchDropdown = document.getElementById('searchDropdown');
+
+    // Open mobile navigation menu
+    openMobileNav.addEventListener('click', () => {
+        mobileNavMenu.classList.remove('hidden');
+    });
+
+    // Close mobile navigation menu
+    closeMobileNav.addEventListener('click', () => {
+        mobileNavMenu.classList.add('hidden');
+    });
+
+    // Toggle search dropdown
+    // document.querySelector('.relative.group').addEventListener('click', () => {
+    //     searchDropdown.classList.toggle('hidden');
+    // });
+</script>
+
+
+    <div class="md:hidden bg-white">
+        <button id="mobile-nav-toggle" class="p-2 focus:outline-none flex items-center">
+            <span class="text-gray-600 hover:text-orange-500 mr-2">Browse the Collection</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 hover:text-orange-500" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+
+        <div id="mobile-nav" class="text-sm hidden">
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500 " onclick="toggleSubmenu('technology-submenu')">Technology and programming</a>
+            <div id="technology-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+    
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500" onclick="toggleSubmenu('writing-submenu')">Writing and translation</a>
+            <div id="writing-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500 " onclick="toggleSubmenu('technology-submenu')">Design</a>
+            <div id="technology-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+    
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500" onclick="toggleSubmenu('writing-submenu')">Digital Marketing</a>
+            <div id="writing-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+    
+            
+
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500 " onclick="toggleSubmenu('technology-submenu')">Business</a>
+            <div id="technology-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+    
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500" onclick="toggleSubmenu('writing-submenu')">Music & Audio</a>
+            <div id="writing-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500 " onclick="toggleSubmenu('technology-submenu')"> Marketing Branding & Sale</a>
+            <div id="technology-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+    
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500" onclick="toggleSubmenu('writing-submenu')">Social Media</a>
+            <div id="writing-submenu" class="submenu">
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+                <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript to toggle mobile navigation
+            document.getElementById("mobile-nav-toggle").addEventListener("click", function () {
+                var mobileNav = document.getElementById("mobile-nav");
+                if (mobileNav.style.display === "block") {
+                    mobileNav.style.display = "none";
+                } else {
+                    mobileNav.style.display = "block";
+                }
+            });
+    
+            // Function to toggle submenus
+            function toggleSubmenu(submenuId) {
+                var submenu = document.getElementById(submenuId);
+                if (submenu.style.display === "block") {
+                    submenu.style.display = "none";
+                } else {
+                    submenu.style.display = "block";
+                }
+            }
+    
+            // Hide submenus by default when the page loads
+            var submenus = document.querySelectorAll(".submenu");
+            submenus.forEach(function (submenu) {
+                submenu.style.display = "none";
+            });
+        </script>
+    </div>
+
+
+   
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:block bg-white p-4 md:p-6 text-sm relative">
+        <div class="flex flex-wrap justify-between md:justify-items-stretch space-x-4 md:space-x-8 ">
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500">Techonology and programming </a>
+                <ul class="hidden absolute left-0 mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">c++</a></li>
+                            <li><a href="#">Python</a></li>
+                            <li><a href="#">Language</a></li>
+                            <li><a href="#">software</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">testing</a></li>
+                            <li><a href="#">assembly</a></li>
+                            <li><a href="#">web dev</a></li>
+                            <li><a href="#">AI</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Game Dev</a></li>
+                            <li><a href="#">Mobile Dev</a></li>
+                            <li><a href="#">SQA</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Writing and translation</a>
+                <ul class="hidden absolute -left-72 mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Design</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -450px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Digital Marketing</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -540px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Videos & Photos</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -700px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Business</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -870px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Music & Audio</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -970px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Marketing Branding &
+                    sale</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -1110px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative group">
+                <a href="#" class="text-gray-600 hover:text-orange-500 flex-1 md:flex-none">Social Media</a>
+                <ul class="hidden absolute  mt-2 bg-white text-gray-600 group-hover:block z-50"
+                    style="width:1500px; left: -1340px;">
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4 ">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Essay</a></li>
+                            <li><a href="#">statement</a></li>
+                            <li><a href="#">speech</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Text</a></li>
+                            <li><a href="#">qoute</a></li>
+                            <li><a href="#">urdu</a></li>
+                            <li><a href="#">translation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Grammer</a></li>
+                            <li><a href="#">phonetics</a></li>
+                            <li><a href="#">letters</a></li>
+                            <li><a href="#">Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="grid grid-cols-4 gap-4 p-4">
+                            <li><a href="#">Devops</a></li>
+                            <li><a href="#">Cyber</a></li>
+                            <li><a href="#">Hack</a></li>
+                            <li><a href="#">GO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <script>
+        // JavaScript to toggle mobile navigation
+        document.getElementById("mobile-nav-toggle").addEventListener("click", function () {
+            var mobileNav = document.getElementById("mobile-nav");
+            if (mobileNav.style.display === "block") {
+                mobileNav.style.display = "none"; // Change "hidden" to "none"
+            } else {
+                mobileNav.style.display = "block";
+            }
+        });
+    </script> -->
+
+
+
+
+    <div class="flex flex-col-reverse h-auto md:h-screen md:flex-row bg-slate-100 ">
+        <div class="basis-1/2  md:mt-36 md:ml-12">
+            <div>
+                <h1 class="text-7xl mt-7" id="head1" style="font-family: 'Anton', sans-serif;">Make bright </h1>
+                <h1 class="text-7xl" id="head2" style="font-family: 'Anton', sans-serif;">Ideas happen </h1>
+                <p class="mt-6 font-bold">Access global talent on the freelancer website </p>
+                <p class="mt-2 font-bold">trusted by over 1 million businesses worldwide.</p>
+                <input class="w-80 h-10  ml-14 mt-10 rounded-xl md:w-96 md:h-16" type="text" id="fname" name="fname"
+                    placeholder="Try ecommerce">
+                <img src="./img/search.png"
+                    class=" md:w-16 w-12 translate-x-80 -translate-y-10   md:translate-x-96 md:-translate-y-16"
+                    id="search" alt="">
+                <div class="flex text-xs h-10 mt-4">
+                    <div class="w-20 pt-5 text-center">
+                        <p>popular skills</p>
+                    </div>
+                    <div class="w-20 bg-slate-200 p-4 m-2 text-center flex items-center justify-center" id="box1">Box 1
+                    </div>
+                    <div class="w-20 bg-slate-200 p-4 m-2 text-center flex items-center justify-center" id="box2">Box 2
+                    </div>
+                    <div class="w-20 bg-slate-200 p-4 m-2 text-center flex items-center justify-center" id="box3">Box 3
+                    </div>
+                    <div class="w-20 bg-slate-200 p-4 m-2 text-center flex items-center justify-center" id="box4">Box 4
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <div class="relative  top-15  md:basis-1/2 md:top-4">
+            <div class="w3-content w3-section" style="max-width:800px">
+                <img class="mySlides" src="./img/img1.png" style="width:100%">
+                <img class="mySlides" src="./img/img2.png" style="width:100%">
+                <img class="mySlides" src="./img/img3.png" style="width:100%">
+                <img class="mySlides" src="./img/img4.png" style="width:100%">
+                <img class="mySlides" src="./img/img5.png" style="width:100%">
+            </div>
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            var heading1 = document.getElementById("head1");
+            var heading2 = document.getElementById("head2");
+            var placeVal = document.getElementById("fname");
+            var Box1 = document.getElementById("box1");
+            var Box2 = document.getElementById("box2");
+            var Box3 = document.getElementById("box3");
+            var Box4 = document.getElementById("box4");
+            var search = document.getElementById("search");
+
+            var color;
+            var text;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1; }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            x[myIndex - 1].style.display = "block";
+            dots[myIndex - 1].classList.add("active");
+            if (myIndex == 1) {
+                color = "purple";
+                text = "try web development";
+                Box1.textContent = "web design";
+                Box2.textContent = "ui / ux design";
+                Box3.textContent = "web response";
+                Box4.textContent = "development";
+                search.style.backgroundColor = "purple";
+            }
+            else if (myIndex == 2) {
+                color = "red";
+                text = "try graphic designing"
+                Box1.textContent = "branding";
+                Box2.textContent = "business";
+                Box3.textContent = "logo";
+                Box4.textContent = "vector";
+                search.style.backgroundColor = "red";
+            }
+            else if (myIndex == 3) {
+                color = "orange";
+                text = "try web development";
+                Box1.textContent = "word press ";
+                Box2.textContent = "php";
+                Box3.textContent = "database";
+                Box4.textContent = "testing";
+                search.style.backgroundColor = "orange";
+            }
+            else if (myIndex == 4) {
+                color = "red";
+                text = "try e-commerce";
+                Box1.textContent = "business card ";
+                Box2.textContent = "branding";
+                Box3.textContent = "vector";
+                Box4.textContent = "cards";
+                search.style.backgroundColor = "red";
+            }
+            else {
+                color = "pink";
+                text = "try graphic designing"
+                Box1.textContent = "logo ";
+                Box2.textContent = "illustration";
+                Box3.textContent = "digital";
+                Box4.textContent = "product";
+                search.style.backgroundColor = "pink";
+            }
+
+            heading1.style.color = color;
+            heading2.style.color = color;
+            placeVal.placeholder = text;
+
+
+            setTimeout(carousel, 8000); // Change image every 5 seconds
+        }
+
+        function currentSlide(n) {
+            myIndex = n;
+            carousel();
+        }
+    </script>
+
+
+
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

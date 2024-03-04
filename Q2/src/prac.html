@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="mobile-nav-toggle">Toggle Mobile Nav</div>
+
+    <div id="mobile-nav" class="text-sm">
+        <a href="#" class="block p-4 text-gray-600 hover:text-orange-500" onclick="toggleSubmenu('technology-submenu')">Technology and programming</a>
+        <div id="technology-submenu" class="submenu">
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+        </div>
+
+        <a href="#" class="block p-4 text-gray-600 hover:text-orange-500" onclick="toggleSubmenu('writing-submenu')">Writing and translation</a>
+        <div id="writing-submenu" class="submenu">
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 1</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 2</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 3</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 4</a>
+            <a href="#" class="block p-4 text-gray-600 hover:text-orange-500">Option 5</a>
+        </div>
+
+        <!-- Repeat the pattern for other categories and submenus -->
+    </div>
+
+    <script>
+        // JavaScript to toggle mobile navigation
+        document.getElementById("mobile-nav-toggle").addEventListener("click", function () {
+            var mobileNav = document.getElementById("mobile-nav");
+            if (mobileNav.style.display === "block") {
+                mobileNav.style.display = "none";
+            } else {
+                mobileNav.style.display = "block";
+            }
+        });
+
+        // Function to toggle submenus
+        function toggleSubmenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+            } else {
+                submenu.style.display = "block";
+            }
+        }
+    </script>
+      
+</body>
+</html>
